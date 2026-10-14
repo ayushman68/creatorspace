@@ -56,45 +56,43 @@ export default function HeroSection({ onExploreCreators, onStartBriefBuilder, on
       overflow: 'hidden'
     }}>
       <div className="container">
+        {/* Editorial Eyebrow */}
+        <div className="editorial-eyebrow">
+          <span>ATELIER FOR GENERATIVE DIRECTORS &amp; CINEMATIC AI • EST. 2026</span>
+        </div>
+
         {/* Top Announcement Tag */}
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '24px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '28px' }}>
           <div 
             onClick={() => { sounds.hover(); onOpenVerification(); }}
             className="pill-badge verified" 
-            style={{ cursor: 'pointer', padding: '6px 16px', fontSize: '13px' }}
+            style={{ cursor: 'pointer', padding: '6px 18px', fontSize: '12.5px' }}
           >
             <span className="status-dot" />
-            <span>AI Content Creator Marketplace for Brands &amp; Studios</span>
+            <span style={{ letterSpacing: '0.04em' }}>Ultra-Luxury AI Production Protocol</span>
             <span style={{ color: 'var(--text-muted)' }}>|</span>
             <span style={{ color: '#fff', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-              Explore Verification Engine <ArrowRight size={12} />
+              4-Layer Verification Engine <ArrowRight size={12} />
             </span>
           </div>
         </div>
 
-        {/* Main Hero Headline */}
-        <div style={{ textAlign: 'center', maxWidth: '880px', margin: '0 auto' }}>
-          <h1 className="font-display" style={{
-            fontSize: 'clamp(2.4rem, 5.5vw, 4.4rem)',
-            fontWeight: 700,
-            lineHeight: 1.05,
-            letterSpacing: '-0.04em',
-            marginBottom: '22px'
-          }}>
-            Where Brands Commission <br />
-            <span className="gradient-text">Proven AI Visionaries.</span>
+        {/* Main Hero Headline (Editorial Bold Serif Contrast) */}
+        <div style={{ textAlign: 'center', maxWidth: '920px', margin: '0 auto' }}>
+          <h1 className="editorial-hero-title">
+            Where Luxury Brands Commission <br />
+            <span className="editorial-hero-accent">Proven AI Visionaries.</span>
           </h1>
 
           <p style={{
-            fontSize: 'clamp(16px, 2vw, 19px)',
+            fontSize: 'clamp(16px, 1.8vw, 19px)',
             color: 'var(--text-secondary)',
-            lineHeight: 1.6,
-            maxWidth: '680px',
-            margin: '0 auto 36px'
+            lineHeight: 1.65,
+            maxWidth: '720px',
+            margin: '0 auto 36px',
+            fontWeight: 400
           }}>
-            The first AI-native marketplace connecting creative agencies with vetted AI filmmakers, 
-            animators, and generative directors. Featuring verified ComfyUI pipelines, locked seeds, 
-            and enterprise commercial indemnity.
+            The premier editorial marketplace connecting global maisons, automotive innovators, and creative agencies with vetted AI filmmakers and prompt architects. Featuring verified ComfyUI node graphs, locked seeds, and 100% commercial copyright indemnity.
           </p>
 
           {/* Action CTAs */}

@@ -91,7 +91,7 @@ export default function Sidebar({
           </div>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <span className="font-display" style={{ fontSize: '18px', fontWeight: 700, color: '#fff', letterSpacing: '-0.03em' }}>
+              <span className="font-cinzel" style={{ fontSize: '17px', fontWeight: 800, color: '#fff', letterSpacing: '0.12em' }}>
                 NEURALIS
               </span>
               <span style={{
@@ -99,15 +99,16 @@ export default function Sidebar({
                 fontWeight: 700,
                 padding: '2px 5px',
                 borderRadius: '4px',
-                background: 'rgba(139, 92, 246, 0.15)',
-                color: '#c084fc',
-                border: '1px solid rgba(139, 92, 246, 0.3)'
+                background: 'rgba(212, 175, 55, 0.15)',
+                color: '#fef08a',
+                border: '1px solid rgba(212, 175, 55, 0.35)',
+                letterSpacing: '0.06em'
               }}>
-                PRO
+                ATELIER
               </span>
             </div>
-            <p style={{ fontSize: '10.5px', color: 'var(--text-muted)', lineHeight: 1.1 }}>
-              AI Creative Marketplace
+            <p style={{ fontSize: '10px', color: 'var(--text-muted)', lineHeight: 1.1, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+              Haute Creative Marketplace
             </p>
           </div>
         </div>
@@ -123,8 +124,8 @@ export default function Sidebar({
       <div style={{ flex: 1, overflowY: 'auto', padding: '16px 12px', display: 'flex', flexDirection: 'column', gap: '22px' }}>
         {/* SECTION 1: MARKETPLACE & DISCOVERY */}
         <div>
-          <span style={{ fontSize: '10px', fontWeight: 700, color: 'rgba(255, 255, 255, 0.35)', letterSpacing: '0.08em', padding: '0 10px 6px', display: 'block' }}>
-            MARKETPLACE
+          <span className="editorial-nav-label" style={{ color: 'rgba(212, 175, 55, 0.7)', padding: '0 10px 8px', display: 'block' }}>
+            ATELIER DIRECTORY
           </span>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
             <button
@@ -169,8 +170,8 @@ export default function Sidebar({
 
         {/* SECTION 2: CREATOR STUDIO */}
         <div>
-          <span style={{ fontSize: '10px', fontWeight: 700, color: 'rgba(255, 255, 255, 0.35)', letterSpacing: '0.08em', padding: '0 10px 6px', display: 'block' }}>
-            CREATOR STUDIO
+          <span className="editorial-nav-label" style={{ color: 'rgba(212, 175, 55, 0.7)', padding: '0 10px 8px', display: 'block' }}>
+            EDITORIAL STUDIO
           </span>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
             <button
@@ -204,8 +205,8 @@ export default function Sidebar({
 
         {/* SECTION 3: PLATFORM & EVALUATION */}
         <div>
-          <span style={{ fontSize: '10px', fontWeight: 700, color: 'rgba(255, 255, 255, 0.35)', letterSpacing: '0.08em', padding: '0 10px 6px', display: 'block' }}>
-            EVALUATION &amp; DOCS
+          <span className="editorial-nav-label" style={{ color: 'rgba(212, 175, 55, 0.7)', padding: '0 10px 8px', display: 'block' }}>
+            SPECIFICATIONS &amp; DOCS
           </span>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
             <button

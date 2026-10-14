@@ -103,7 +103,7 @@ export default function TopHeader({
                 {activeTab === 'creator-studio' && 'Creator Studio'}
               </span>
             </div>
-            <h2 className="font-display" style={{ fontSize: '18px', color: '#fff', fontWeight: 600, margin: 0 }}>
+            <h2 className="font-serif" style={{ fontSize: '19px', color: '#fff', fontWeight: 600, margin: 0, letterSpacing: '-0.01em' }}>
               {activeTab === 'discover' && 'Creator Discovery & AI Portfolios'}
               {activeTab === 'briefs' && 'Brand & Agency Briefs Exchange'}
               {activeTab === 'brief-builder' && 'AI-Assisted Brief Builder'}

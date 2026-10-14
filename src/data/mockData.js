@@ -85,6 +85,30 @@ export const CREATORS = [
           comfyUiNodesCount: 18,
           workflowHash: 'sha256:1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c'
         }
+      },
+      {
+        id: 'port-7',
+        title: 'AURÉLIEN: High Jewelry & Atelier AI Campaign',
+        category: 'Ultra-Luxury Editorial',
+        image: '/portfolio/luxury_atelier.jpg',
+        aspectRatio: '16:9',
+        duration: 'High Jewelry Print & Digital Master',
+        description: 'Ultra-luxury high jewelry campaign featuring sapphire and diamond collar necklaces on silk velour, with raytraced ambient occlusion and editorial typography.',
+        toolsUsed: ['Midjourney v6.0 raw', 'Flux.1 Pro', 'ACEScg Cinematic Grade', 'Custom Jewelry LoRA'],
+        commercialCleared: true,
+        licenseType: 'Exclusive Haute Joaillerie Buyout',
+        workflowDetails: {
+          pipeline: 'Midjourney v6.0 Raw -> Flux.1 Pro Custom Inpainting -> Jewelry Specular Node -> 8K Latent Polish',
+          prompt: 'Premium UI/UX website mockup, ultra-luxury aesthetic, minimalist layout, elegant typography featuring a bold serif header for contrast and clean high-end geometric sans-serif navigation text. Sophisticated editorial design, asymmetrical grid layout, rich textures, deep cinematic lighting, soft shadows, 8k resolution, photorealistic website layout template, presentation on a sleek dark background',
+          negativePrompt: 'blurry, fake gems, noisy reflections, low dynamic range, low detail, warped setting',
+          seed: 492019482,
+          cfgScale: 5.0,
+          steps: 42,
+          sampler: 'DPM++ 2M Karras',
+          reproducibilityScore: 99.8,
+          comfyUiNodesCount: 28,
+          workflowHash: 'sha256:e1a90c4f8b2d3e5a6c7b8d9e0f1a2b'
+        }
       }
     ]
   },

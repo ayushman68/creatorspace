@@ -144,7 +144,7 @@ export default function CreatorSearch({ onSelectCreator, onInspectWorkflow, exte
 
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '16px' }}>
             <div>
-              <h2 className="font-display" style={{ fontSize: '32px', color: '#fff', letterSpacing: '-0.03em' }}>
+              <h2 className="font-serif" style={{ fontSize: '32px', color: '#fff', letterSpacing: '-0.02em', fontWeight: 600 }}>
                 Discover Proven AI Creators
               </h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '15px' }}>
