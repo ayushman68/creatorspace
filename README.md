@@ -2,7 +2,16 @@
 > **Where Luxury Brands Commission Proven AI Visionaries.**  
 > The premier AI-native creative marketplace engineered around prompt architectures, reproducible ComfyUI node graphs, locked seeds, and enterprise commercial indemnity. Styled with a dark luxury editorial aesthetic and the Quantix glassmorphic dashboard architecture.
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/ayushman68/creatorspace)
+---
+
+### 🌐 Live Production Deployment & Demo Access
+- **Production Live URL**: **[https://ayushman68.github.io/creatorspace/](https://ayushman68.github.io/creatorspace/)**
+- **All Permissions Granted**: Sovereign Council Super-Admin (`root@neuralis.ai`) enabled with universal access to:
+  - 🔓 **$1,500,000 Escrow Vault** (instant milestone releases)
+  - 🔓 **4-Layer Verification Center Bypass** (100% inference parity)
+  - 🔓 **Dual-Persona Access** (Brand Agency & AI Creator Studio)
+- **CI/CD Pipeline**: 100% automated continuous deployment via GitHub Actions.
+- **Render Blueprint Deployment**: [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/ayushman68/creatorspace)
 
 ---
 
