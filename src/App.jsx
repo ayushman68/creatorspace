@@ -12,6 +12,7 @@ import PitchDeckModal from './components/PitchDeckModal';
 import DataModelModal from './components/DataModelModal';
 import CreatorStudioView from './components/CreatorStudioView';
 import WorkflowInspectorModal from './components/WorkflowInspectorModal';
+import AuthModal, { DEMO_USERS } from './components/AuthModal';
 import { CREATORS, INITIAL_BRIEFS } from './data/mockData';
 import { sounds } from './utils/audio';
 import { Sparkles, ShieldCheck, Database, Presentation, ArrowRight } from 'lucide-react';
@@ -19,6 +20,7 @@ import { Sparkles, ShieldCheck, Database, Presentation, ArrowRight } from 'lucid
 export default function App() {
   const [activeTab, setActiveTab] = useState('discover'); // 'discover', 'briefs', 'brief-builder', 'verification', 'creator-studio'
   const [userMode, setUserMode] = useState('brand'); // 'brand', 'creator'
+  const [currentUser, setCurrentUser] = useState(DEMO_USERS.brand);
   const [briefs, setBriefs] = useState(INITIAL_BRIEFS);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -29,6 +31,8 @@ export default function App() {
   const [inspectingCreator, setInspectingCreator] = useState(null);
   const [showPitchDeck, setShowPitchDeck] = useState(false);
   const [showDataModel, setShowDataModel] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [authDefaultRole, setAuthDefaultRole] = useState('brand');
 
   const handleBriefPublished = (newBrief) => {
     setBriefs([newBrief, ...briefs]);
@@ -38,6 +42,34 @@ export default function App() {
     sounds.openModal();
     setInspectingWorkflowItem(item);
     setInspectingCreator(creator);
+  };
+
+  const handleOpenAuthModal = (role = 'brand') => {
+    sounds.openModal();
+    setAuthDefaultRole(role);
+    setShowAuthModal(true);
+  };
+
+  const handleSignIn = (user) => {
+    setCurrentUser(user);
+    setUserMode(user.type);
+    if (user.type === 'creator') {
+      setActiveTab('creator-studio');
+    } else {
+      setActiveTab('discover');
+    }
+  };
+
+  const handleSwitchPersona = (targetRole) => {
+    sounds.click();
+    const newUser = DEMO_USERS[targetRole] || DEMO_USERS.brand;
+    setCurrentUser(newUser);
+    setUserMode(targetRole);
+    if (targetRole === 'creator') {
+      setActiveTab('creator-studio');
+    } else {
+      setActiveTab('discover');
+    }
   };
 
   return (
@@ -66,6 +98,8 @@ export default function App() {
         setActiveTab={setActiveTab}
         userMode={userMode}
         setUserMode={setUserMode}
+        currentUser={currentUser}
+        onOpenAuthModal={handleOpenAuthModal}
         onOpenPitchDeck={() => setShowPitchDeck(true)}
         onOpenDataModel={() => setShowDataModel(true)}
         onOpenCreateBrief={() => setActiveTab('brief-builder')}
@@ -82,6 +116,9 @@ export default function App() {
           onOpenCreateBrief={() => setActiveTab('brief-builder')}
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
+          currentUser={currentUser}
+          onOpenAuthModal={handleOpenAuthModal}
+          onSwitchPersona={handleSwitchPersona}
         />
 
         {/* Dashboard Content Area */}
@@ -160,15 +197,15 @@ export default function App() {
           }}>
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-                <span className="font-display" style={{ fontSize: '16px', fontWeight: 700, color: '#fff' }}>
-                  NEURALIS
+                <span className="font-cinzel" style={{ fontSize: '16px', fontWeight: 700, color: '#fff', letterSpacing: '0.08em' }}>
+                  NEURALIS ATELIER
                 </span>
                 <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
                   • AI Content Creator Marketplace
                 </span>
               </div>
               <p style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
-                Quantix Architecture • Reproducible node workflows, cryptographic seed checks &amp; commercial indemnity.
+                Quantix Architecture • Dual Persona Protocol (Brand Agency &amp; Creator Studio) • Cryptographic Seed Reproducibility.
               </p>
             </div>
 
@@ -190,6 +227,12 @@ export default function App() {
                 style={{ cursor: 'pointer', color: '#34d399' }}
               >
                 Verification Engine
+              </span>
+              <span 
+                onClick={() => handleOpenAuthModal(currentUser.type)}
+                style={{ cursor: 'pointer', color: '#fef08a' }}
+              >
+                Account Auth
               </span>
             </div>
           </div>
@@ -227,6 +270,15 @@ export default function App() {
           onClose={() => setShowDataModel(false)}
         />
       )}
+
+      {/* Dual Persona Sign In / Register Modal */}
+      <AuthModal
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+        currentUser={currentUser}
+        onSignIn={handleSignIn}
+        defaultRole={authDefaultRole}
+      />
 
       {/* Global Evaluation Quick-Nav Floating Widget */}
       <div style={{
@@ -282,6 +334,25 @@ export default function App() {
         >
           <Database size={13} />
           <span>Data Model Spec</span>
+        </button>
+
+        <button
+          onClick={() => handleOpenAuthModal(currentUser.type)}
+          style={{
+            background: 'rgba(212, 175, 55, 0.15)',
+            color: '#fef08a',
+            border: '1px solid rgba(212, 175, 55, 0.35)',
+            padding: '5px 12px',
+            borderRadius: 'var(--radius-pill)',
+            fontSize: '11.5px',
+            fontWeight: 600,
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '5px'
+          }}
+        >
+          <span>Sign In / Switch</span>
         </button>
       </div>
     </div>

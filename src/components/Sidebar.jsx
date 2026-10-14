@@ -26,6 +26,8 @@ export default function Sidebar({
   setActiveTab, 
   userMode, 
   setUserMode, 
+  currentUser,
+  onOpenAuthModal,
   onOpenPitchDeck, 
   onOpenDataModel,
   onOpenCreateBrief,
@@ -42,12 +44,15 @@ export default function Sidebar({
 
   const handleToggleSound = () => {
     sounds.toggleMute();
-    // re-render handled by state in parent or local force update
   };
 
   const handleToggleMode = () => {
     sounds.click();
-    setUserMode(userMode === 'brand' ? 'creator' : 'brand');
+    if (onOpenAuthModal) {
+      onOpenAuthModal(userMode === 'brand' ? 'creator' : 'brand');
+    } else {
+      setUserMode(userMode === 'brand' ? 'creator' : 'brand');
+    }
   };
 
   return (
@@ -247,7 +252,7 @@ export default function Sidebar({
         flexDirection: 'column',
         gap: '12px'
       }}>
-        {/* Mode Toggle Button */}
+        {/* Mode Toggle & Sign In Switcher */}
         <button
           onClick={handleToggleMode}
           style={{
@@ -255,11 +260,11 @@ export default function Sidebar({
             alignItems: 'center',
             justifyContent: 'space-between',
             padding: '8px 12px',
-            background: userMode === 'brand' ? 'rgba(255, 255, 255, 0.04)' : 'rgba(6, 182, 212, 0.1)',
-            border: `1px solid ${userMode === 'brand' ? 'var(--border-subtle)' : 'rgba(6, 182, 212, 0.3)'}`,
+            background: currentUser?.type === 'brand' ? 'rgba(139, 92, 246, 0.12)' : 'rgba(6, 182, 212, 0.12)',
+            border: `1px solid ${currentUser?.type === 'brand' ? 'rgba(139, 92, 246, 0.35)' : 'rgba(6, 182, 212, 0.35)'}`,
             borderRadius: 'var(--radius-sm)',
             cursor: 'pointer',
-            color: userMode === 'brand' ? '#fff' : '#67e8f9',
+            color: currentUser?.type === 'brand' ? '#c084fc' : '#67e8f9',
             fontSize: '12px',
             fontWeight: 600,
             transition: 'all 0.2s ease'
@@ -267,18 +272,31 @@ export default function Sidebar({
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Users size={14} />
-            <span>{userMode === 'brand' ? 'Brand Agency View' : 'Creator Studio View'}</span>
+            <span>{currentUser?.type === 'brand' ? 'Brand Agency View' : 'Creator Studio View'}</span>
           </div>
-          <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>Switch</span>
+          <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>Switch / Sign In</span>
         </button>
 
         {/* User Card */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div 
+          onClick={() => { sounds.click(); if (onOpenAuthModal) onOpenAuthModal(currentUser?.type); }}
+          style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'space-between',
+            cursor: 'pointer',
+            padding: '4px',
+            borderRadius: 'var(--radius-sm)',
+            transition: 'background 0.2s ease'
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)'}
+          onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+        >
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <div style={{ position: 'relative' }}>
               <img 
-                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80" 
-                alt="Jason Vance"
+                src={currentUser?.avatar || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80"} 
+                alt={currentUser?.name || "User"}
                 style={{ width: '34px', height: '34px', borderRadius: '50%', objectFit: 'cover' }}
               />
               <span style={{
@@ -293,17 +311,17 @@ export default function Sidebar({
               }} />
             </div>
             <div>
-              <p style={{ fontSize: '13px', fontWeight: 600, color: '#fff', lineHeight: 1.1 }}>
-                Jason Vance
+              <p style={{ fontSize: '13px', fontWeight: 600, color: '#fff', lineHeight: 1.1, margin: 0 }}>
+                {currentUser?.name || 'Jason Vance'}
               </p>
-              <p style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
-                {userMode === 'brand' ? 'Agency Lead' : 'AI Filmmaker'}
+              <p style={{ fontSize: '11px', color: 'var(--text-muted)', margin: 0 }}>
+                {currentUser?.type === 'brand' ? (currentUser?.organization || 'Agency Lead') : (currentUser?.organization || 'Master Director')}
               </p>
             </div>
           </div>
 
           <button
-            onClick={handleToggleSound}
+            onClick={(e) => { e.stopPropagation(); handleToggleSound(); }}
             className="btn-icon"
             style={{ width: '30px', height: '30px' }}
             title={isMuted ? 'Unmute sounds' : 'Mute sounds'}
