@@ -47,6 +47,19 @@ export const DEMO_USERS = {
     reproducibilityScore: '99.8%',
     tier: 'Master Director (Grade A+)',
     tagline: 'Verified ComfyUI & Flux.1 Pipelines'
+  },
+  admin: {
+    id: 'user-admin-root',
+    type: 'admin',
+    name: 'Sovereign Council',
+    email: 'admin@neuralis.ai',
+    role: 'Chief AI Auditor & Platform Admin',
+    organization: 'NEURALIS Foundation Council',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=240&q=80',
+    escrowBalance: '$1,500,000',
+    reproducibilityScore: '100%',
+    tier: 'Universal Access (All Permissions)',
+    tagline: 'Full Platform Escrow & Pipeline Authority'
   }
 };
 
@@ -173,8 +186,8 @@ export default function AuthModal({
           {/* Persona Segmented Switcher */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '8px',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '6px',
             background: 'rgba(255, 255, 255, 0.04)',
             padding: '5px',
             borderRadius: 'var(--radius-pill)',
@@ -187,21 +200,21 @@ export default function AuthModal({
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: '8px',
-                padding: '9px 16px',
+                gap: '6px',
+                padding: '8px 10px',
                 borderRadius: 'var(--radius-pill)',
                 border: 'none',
                 background: activeRole === 'brand' ? 'linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%)' : 'transparent',
                 color: activeRole === 'brand' ? '#fff' : 'var(--text-secondary)',
-                fontSize: '13px',
+                fontSize: '12px',
                 fontWeight: 600,
                 cursor: 'pointer',
                 transition: 'all 0.2s ease',
                 boxShadow: activeRole === 'brand' ? '0 4px 16px rgba(139, 92, 246, 0.4)' : 'none'
               }}
             >
-              <Building2 size={15} />
-              <span>Brand / Agency</span>
+              <Building2 size={13} />
+              <span>Brand</span>
             </button>
 
             <button
@@ -210,21 +223,44 @@ export default function AuthModal({
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: '8px',
-                padding: '9px 16px',
+                gap: '6px',
+                padding: '8px 10px',
                 borderRadius: 'var(--radius-pill)',
                 border: 'none',
                 background: activeRole === 'creator' ? 'linear-gradient(135deg, #06b6d4 0%, #0284c7 100%)' : 'transparent',
                 color: activeRole === 'creator' ? '#fff' : 'var(--text-secondary)',
-                fontSize: '13px',
+                fontSize: '12px',
                 fontWeight: 600,
                 cursor: 'pointer',
                 transition: 'all 0.2s ease',
                 boxShadow: activeRole === 'creator' ? '0 4px 16px rgba(6, 182, 212, 0.4)' : 'none'
               }}
             >
-              <Palette size={15} />
-              <span>AI Creator / Director</span>
+              <Palette size={13} />
+              <span>Creator</span>
+            </button>
+
+            <button
+              onClick={() => { sounds.tab(); setActiveRole('admin'); }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '6px',
+                padding: '8px 10px',
+                borderRadius: 'var(--radius-pill)',
+                border: 'none',
+                background: activeRole === 'admin' ? 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)' : 'transparent',
+                color: activeRole === 'admin' ? '#fff' : 'var(--text-secondary)',
+                fontSize: '12px',
+                fontWeight: 600,
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                boxShadow: activeRole === 'admin' ? '0 4px 16px rgba(245, 158, 11, 0.4)' : 'none'
+              }}
+            >
+              <ShieldCheck size={13} />
+              <span>All Access 👑</span>
             </button>
           </div>
         </div>
@@ -233,8 +269,18 @@ export default function AuthModal({
         <div style={{ padding: '24px 28px' }}>
           {/* Persona Benefits Card */}
           <div style={{
-            background: activeRole === 'brand' ? 'rgba(139, 92, 246, 0.08)' : 'rgba(6, 182, 212, 0.08)',
-            border: `1px solid ${activeRole === 'brand' ? 'rgba(139, 92, 246, 0.25)' : 'rgba(6, 182, 212, 0.25)'}`,
+            background: activeRole === 'brand' 
+              ? 'rgba(139, 92, 246, 0.08)' 
+              : activeRole === 'creator' 
+                ? 'rgba(6, 182, 212, 0.08)' 
+                : 'rgba(245, 158, 11, 0.1)',
+            border: `1px solid ${
+              activeRole === 'brand' 
+                ? 'rgba(139, 92, 246, 0.25)' 
+                : activeRole === 'creator' 
+                  ? 'rgba(6, 182, 212, 0.25)' 
+                  : 'rgba(245, 158, 11, 0.35)'
+            }`,
             borderRadius: 'var(--radius-md)',
             padding: '12px 16px',
             marginBottom: '20px',
@@ -248,24 +294,38 @@ export default function AuthModal({
               width: '32px',
               height: '32px',
               borderRadius: '8px',
-              background: activeRole === 'brand' ? 'rgba(139, 92, 246, 0.2)' : 'rgba(6, 182, 212, 0.2)',
+              background: activeRole === 'brand' 
+                ? 'rgba(139, 92, 246, 0.2)' 
+                : activeRole === 'creator' 
+                  ? 'rgba(6, 182, 212, 0.2)' 
+                  : 'rgba(245, 158, 11, 0.25)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               flexShrink: 0
             }}>
-              {activeRole === 'brand' ? <Briefcase size={16} color="#c084fc" /> : <Cpu size={16} color="#67e8f9" />}
+              {activeRole === 'brand' ? (
+                <Briefcase size={16} color="#c084fc" />
+              ) : activeRole === 'creator' ? (
+                <Cpu size={16} color="#67e8f9" />
+              ) : (
+                <ShieldCheck size={16} color="#fbbf24" />
+              )}
             </div>
             <div>
               <p style={{ fontWeight: 600, color: '#fff', marginBottom: '2px' }}>
                 {activeRole === 'brand' 
                   ? 'Brand Agency Mode: Direct Commissions & Indemnity' 
-                  : 'Creator Studio Mode: Workflows, LoRAs & Milestone Payouts'}
+                  : activeRole === 'creator'
+                    ? 'Creator Studio Mode: Workflows, LoRAs & Milestone Payouts'
+                    : 'Universal Super-Admin: All Permissions & Master Audits'}
               </p>
               <p style={{ margin: 0, opacity: 0.85 }}>
                 {activeRole === 'brand'
                   ? 'Fund milestone escrow, generate structured AI briefs, and audit ComfyUI node graphs.'
-                  : 'Publish verified pipelines, lock seeds, pass reproducibility audits, and receive instant payouts.'}
+                  : activeRole === 'creator'
+                    ? 'Publish verified pipelines, lock seeds, pass reproducibility audits, and receive instant payouts.'
+                    : 'Full sovereign bypass: unlimited escrow balance ($1.5M), auto-approve briefs, direct ComfyUI verification override.'}
               </p>
             </div>
           </div>
