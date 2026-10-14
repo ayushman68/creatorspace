@@ -363,3 +363,110 @@ h1, h2, h3, h4, .font-display {
     padding: 0 16px;
   }
 }
+
+/* ==========================================================================
+   QUANTIX PINTEREST DASHBOARD TEMPLATE STYLES
+   ========================================================================== */
+
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+  background-color: var(--bg-main);
+}
+
+.app-main-layout {
+  flex: 1;
+  margin-left: 260px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 100vh;
+  position: relative;
+  transition: margin-left 0.3s ease;
+}
+
+@media (max-width: 991px) {
+  .app-main-layout {
+    margin-left: 0;
+  }
+  
+  .sidebar-container {
+    transform: translateX(-100%);
+  }
+  
+  .sidebar-container.open {
+    transform: translateX(0) !important;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
+  }
+
+  .mobile-close-btn {
+    display: inline-flex !important;
+  }
+}
+
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 55;
+  animation: fade-in 0.2s ease-out;
+}
+
+.sidebar-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: 1px solid transparent;
+  color: rgba(255, 255, 255, 0.65);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  text-align: left;
+}
+
+.sidebar-nav-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+}
+
+.sidebar-nav-item.active {
+  background: rgba(139, 92, 246, 0.14);
+  color: #ffffff;
+  border-color: rgba(139, 92, 246, 0.35);
+  font-weight: 600;
+  box-shadow: 0 0 20px -3px rgba(139, 92, 246, 0.25);
+}
+
+.sidebar-pill {
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* Dashboard Content Wrapper */
+.dashboard-content-area {
+  padding: 28px 32px 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .dashboard-content-area {
+    padding: 18px 16px 40px;
+  }
+}
+

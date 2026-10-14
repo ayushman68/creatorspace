@@ -20,8 +20,10 @@ import {
 import { CREATORS } from '../data/mockData';
 import { sounds } from '../utils/audio';
 
-export default function CreatorSearch({ onSelectCreator, onInspectWorkflow }) {
-  const [searchQuery, setSearchQuery] = useState('');
+export default function CreatorSearch({ onSelectCreator, onInspectWorkflow, externalSearchQuery = '' }) {
+  const [internalQuery, setInternalQuery] = useState('');
+  const searchQuery = externalSearchQuery || internalQuery;
+  const setSearchQuery = setInternalQuery;
   const [selectedContentType, setSelectedContentType] = useState('All');
   const [selectedSpecialization, setSelectedSpecialization] = useState('All');
   const [selectedTool, setSelectedTool] = useState('All');
